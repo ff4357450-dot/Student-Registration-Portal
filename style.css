@@ -1,0 +1,132 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f5f6fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+h1 {
+  color: #004aad;
+  margin-bottom: 25px;
+}
+
+form {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  width: 100%;
+  max-width: 450px;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.gender {
+  display: flex;
+  gap: 20px;
+  margin-top: 5px;
+}
+
+.submit {
+  margin-top: 20px;
+  background-color: #004aad;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+}
+
+.submit:hover {
+  background-color: #003580;
+}
+
+.error {
+  color: red;
+  font-size: 13px;
+  height: 14px;
+  display: block;
+  margin-bottom: 5px;
+}
+select{
+  width: 468px;
+  height: 33.5px;
+}
+body{
+ background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSW42t-vD3ztCj73nTZ84lL2UyytZJNBXvmOQ&s);
+  background-size: cover;
+}
+form{
+  background-color: #f9f9f7;
+
+}
+.emaila{
+  margin-top: 44px;
+  margin-left: 390px;
+}
+.mobila{
+  margin-top: 253px;
+  margin-left: 390px;
+}
+.location{
+  margin-left: 390px;
+  margin-top: 35px;
+}
+.nama{
+  margin-left: 390px;
+  margin-top: -773px;
+}
+.fnama{
+  margin-top: 30px;
+  margin-left: 390px;
+
+}
+.Mnama{
+  margin-left: 390px;
+  margin-top: 35px;
+}
+.Collegenama{
+  margin-left: 390px;
+  margin-top: -780px;
+}
+.local{
+  margin-left: 390px;
+  margin-top: 27px;
+} 
+.roll{
+  margin-left: 390px;
+  margin-top: 114px;
+}
+.yearly{
+  margin-left: 390px;
+  margin-top: 46px;
+}
+.pass{
+  margin-left: 390px;
+  margin-top: 124px;
+}
+.cpass{
+  margin-top: 50px;
+  margin-left: 390px;
+}

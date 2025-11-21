@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration - Page 1</title>
+  <link rel="stylesheet" href="style.css">
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+<script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+</head>
+<body>
+
+  <h1>Student Registration Form</h1>
+  <h3><u>*Personal Information*</u></h3>
+
+  <form id="page1Form" novalidate>
+
+    <label>Full Name:</label>
+    <input type="text" id="name" placeholder="Enter your name" name="Data[Name]">
+    <small class="error" id="name-error"></small>
+
+    <label>Father's Name:</label>
+    <input type="text" id="father" placeholder="Enter your Father Name" name="Data[FatherName]">
+    <small class="error" id="father-error"></small>
+
+    <label>Mother's Name:</label>
+    <input type="text" id="mother" placeholder="Enter your Mother Name" name="Data[MotherName]">
+    <small class="error" id="mother-error"></small>
+
+    <label>Gender:</label>
+    <div>
+      <input type="radio" name="gender" value="Male" name="Data[Gender]"> Male
+      <input type="radio" name="gender" value="Female" name="Data[Gender]"> Female
+    </div>
+    <small class="error" id="gender-error"></small>
+
+    <label>Date of Birth:</label>
+    <input type="date" id="DOB" name="Data[DOB]">
+    <small class="error" id="dob-error"></small>
+
+    <label>Mobile No.:</label>
+    <input type="text" id="mobile" placeholder="Enter 10-digit Mobile No." name="Mobile">
+    <small class="error" id="mobile-error"></small>
+
+    <label>Email:</label>
+    <input type="email" id="email" placeholder="Enter your Email" name="Data[Email]">
+    <small class="error" id="email-error"></small>
+
+    <label>Address:</label>
+    <textarea id="address" placeholder="Enter your Address" name="Data[Address]"></textarea>
+    <small class="error" id="address-error"></small>
+
+    <input type="submit" value="Next Page →" class="submit">
+
+  </form>
+  <dotlottie-wc class="nama" src="https://lottie.host/90100edb-dadb-49ef-9f18-a3d4ccc37a36/fRklmUf1mN.lottie" style="width: 50px;height: 50px" autoplay loop></dotlottie-wc>
+  <dotlottie-wc class="fnama" src="https://lottie.host/53de580d-4b99-4a15-8f14-763677ae2222/19fEiEv72p.lottie" style="width: 50px;height: 50px" autoplay loop></dotlottie-wc>
+
+  <dotlottie-wc class="Mnama" src="https://lottie.host/569e6ffe-e57f-4f3b-9d4b-b16d4ca84869/Ayq0XNlaUS.lottie" style="width: 40px;height: 40px" autoplay loop></dotlottie-wc>
+  <dotlottie-wc class="mobila" src="https://lottie.host/4c25a879-aef7-4903-a2e5-29d5dbc28e9a/w4wkqQYj5c.lottie" style="width: 30px;height: 30px" autoplay loop></dotlottie-wc>
+
+  
+
+<dotlottie-wc class="emaila" src="https://lottie.host/6ca3eeed-63d9-4ac6-a5a2-9b8d3299ed30/OoYI5HXoAk.lottie" style="width: 50px;height: 50px" autoplay loop></dotlottie-wc>
+
+
+
+<dotlottie-wc class="location" src="https://lottie.host/90c03d11-0722-49b7-8ace-762fe1b0448a/6ep8xh9926.lottie" style="width: 50px;height: 50px" autoplay loop></dotlottie-wc>
+
+
+
+  <script>
+    
+const page1Form = document.getElementById("page1Form");
+
+if (page1Form) {
+  page1Form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    
+    let name = document.getElementById("name").value.trim();
+    let father = document.getElementById("father").value.trim();
+    let mother = document.getElementById("mother").value.trim();
+    let gender = document.querySelector("input[name='gender']:checked");
+    let dob = document.getElementById("DOB").value;
+    let mobile = document.getElementById("mobile").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let address = document.getElementById("address").value.trim();
+
+    
+    if (name === "" || father === "" || mother === "" || !gender || dob === "" ||
+        mobile === "" || email === "" || address === "") {
+      alert("Please fill all fields before proceeding.");
+      return;
+    }
+
+    if (mobile.length !== 10 || isNaN(mobile)) {
+      alert("Mobile number must be 10 digits.");
+      return;
+    }
+
+    if (!email.includes("@") || !email.includes(".")) {
+      alert("Enter a valid email address.");
+      return;
+    }
+
+    
+    let data = {
+      name,
+      father,
+      mother,
+      gender: gender.value,
+      dob,
+      mobile,
+      email,
+      address
+    };
+
+    localStorage.setItem("studentData", JSON.stringify(data));
+
+    
+    window.location.href = "college.html";
+  });
+}
+
+  </script>
+
+</body>
+</html>

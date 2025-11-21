@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student Registration - College Info</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+  <script src="https://unpkg.com/@lottiefiles/dotlottie-wc@0.8.5/dist/dotlottie-wc.js" type="module"></script>
+
+  <style>
+    
+    .error { color: red; font-size: 13px; display:block; margin-top:4px; }
+    .popup {
+      display:none;
+      position:fixed;
+      top:50%; left:50%;
+      transform:translate(-50%,-50%);
+      background:#4CAF50; color:#fff; padding:18px 28px;
+      border-radius:10px; box-shadow:0 6px 24px rgba(0,0,0,.25);
+      z-index:9999; font-size:18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Registration — College Information</h1>
+
+  <form id="finalForm" novalidate>
+    
+    <input type="hidden" id="student_json">
+
+    <label for="CollegeName">College Name</label>
+    <input id="CollegeName" name="Data[CollegeName]" placeholder="Enter College Name" type="text" />
+    <small id="CollegeName-error" class="error"></small>
+
+    <label for="CollegeAddress">College Address</label>
+    <input id="CollegeAddress" name="Data[CollegeAddress]" placeholder="Enter College Address" type="text" />
+    <small id="CollegeAddress-error" class="error"></small>
+
+    <label for="BranchName">Branch</label>
+    <select id="BranchName" name="Data[Branch]">
+      <option value="">Select Branch</option>
+      <option value="CSE">CSE</option>
+      <option value="IT">IT</option>
+      <option value="ECE">ECE</option>
+      <option value="EEE">EEE</option>
+      <option value="MECH">MECH</option>
+      <option value="CIVIL">CIVIL</option>
+      <option value="AIML">AI & ML</option>
+      <option value="AIDS">AI & DS</option>
+    </select>
+    <small id="BranchName-error" class="error"></small>
+
+    <label for="RollNo">Enrollment No.</label>
+    <input id="RollNo" name="Data[RollNo]" placeholder="Enter your Enrollment No." type="text" />
+    <small id="RollNo-error" class="error"></small>
+
+    <label for="admissionYear">Year of Admission</label>
+    <input id="admissionYear" name="Data[AdmissionYear]" type="text" placeholder="e.g. 2022" />
+    <small id="admissionYear-error" class="error"></small>
+
+    <label for="currentYear">Current Year</label>
+    <select id="currentYear" name="Data[CurrentYear]">
+      <option value="">Select Year</option>
+      <option value="1st">1st</option>
+      <option value="2nd">2nd</option>
+      <option value="3rd">3rd</option>
+      <option value="4th">4th</option>
+    </select>
+    <small id="currentYear-error" class="error"></small>
+
+    <label for="Password">Password</label>
+    <input id="Password" name="Data[Password]" type="password" />
+    <small id="Password-error" class="error"></small>
+
+    <label for="ConfirmPassword">Confirm Password</label>
+    <input id="ConfirmPassword" type="password" />
+    <small id="ConfirmPassword-error" class="error"></small>
+
+    <br/><br/>
+    <button type="submit" class="submit">Submit Registration</button>
+  </form>
+
+<dotlottie-wc class="Collegenama" src="https://lottie.host/fca640a2-56b8-45aa-a8ab-216f7134e613/CejGEribrZ.lottie" style="width: 70px;height: 70px" autoplay loop></dotlottie-wc>
+
+<dotlottie-wc class="local" src="https://lottie.host/0df6665e-fbe3-4bf4-a387-5f321ef3a114/DJZWN38TDX.lottie" style="width: 50px;height: 50px" autoplay loop></dotlottie-wc>
+
+<dotlottie-wc class="roll" src="https://lottie.host/a39001ec-bb07-4744-90f9-f5f8a491aac0/OqILTrUtwL.lottie" style="width: 40px;height: 40px" autoplay loop></dotlottie-wc>
+
+<dotlottie-wc class="yearly" src="https://lottie.host/211d4bdf-9f7f-4a48-895f-30354c4482b2/Tj9erj4tkB.lottie" style="width: 45px;height: 45px" autoplay loop></dotlottie-wc>
+
+
+<dotlottie-wc class="pass" src="https://lottie.host/e3b29846-f10e-4907-a72a-ac66c48942d2/15IU5lAFyN.lottie" style="width: 35px;height: 35px" autoplay loop></dotlottie-wc>
+<dotlottie-wc class="cpass" src="https://lottie.host/e3b29846-f10e-4907-a72a-ac66c48942d2/15IU5lAFyN.lottie" style="width: 35px;height: 35px" autoplay loop></dotlottie-wc>
+  <div id="popup" class="popup">🎉 Successfully Registered!</div>
+
+  <script>
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("finalForm");
+  const popup = document.getElementById("popup");
+
+  
+  let personalRaw = localStorage.getItem("studentData");
+  if (!personalRaw) {
+    console.warn("No studentData found in localStorage. Redirecting to page 1.");
+    
+    window.location.href = "personal.html";
+    return;
+  }
+
+  let personal;
+  try {
+    personal = JSON.parse(personalRaw);
+  } catch (err) {
+    console.error("Failed parsing studentData:", err);
+    localStorage.removeItem("studentData");
+    window.location.href = "personal.html";
+    return;
+  }
+
+  
+  document.getElementById("student_json").value = personalRaw;
+
+  
+  const setErr = (id, msg) => { document.getElementById(id).textContent = msg || ""; };
+  const clearAllErr = () => document.querySelectorAll(".error").forEach(e => e.textContent = "");
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    clearAllErr();
+
+    
+    const college = document.getElementById("CollegeName").value.trim();
+    const collegeAddress = document.getElementById("CollegeAddress").value.trim();
+    const branch = document.getElementById("BranchName").value;
+    const roll = document.getElementById("RollNo").value.trim();
+    const admissionYear = document.getElementById("admissionYear").value.trim();
+    const currentYear = document.getElementById("currentYear").value;
+    const password = document.getElementById("Password").value;
+    const confirm = document.getElementById("ConfirmPassword").value;
+
+    let isValid = true;
+
+    if (!college) { setErr("CollegeName-error", "College name required"); isValid = false; }
+    if (!collegeAddress) { setErr("CollegeAddress-error", "College address required"); isValid = false; }
+    if (!branch) { setErr("BranchName-error", "Select branch"); isValid = false; }
+    if (!/^[0-9A-Za-z\-]{4,20}$/.test(roll)) { setErr("RollNo-error", "Enter valid enrollment (4-20 chars)"); isValid = false; }
+    if (!/^(19|20)\d{2}$/.test(admissionYear)) { setErr("admissionYear-error", "Enter valid 4-digit year"); isValid = false; }
+    if (!currentYear) { setErr("currentYear-error", "Select current year"); isValid = false; }
+    if (!password || password.length < 6) { setErr("Password-error", "Password min 6 chars"); isValid = false; }
+    if (confirm !== password) { setErr("ConfirmPassword-error", "Passwords do not match"); isValid = false; }
+
+    if (!isValid) {
+      console.log("Validation failed on page 2");
+      return;
+    }
+
+    
+    const finalData = {
+      Name: personal.name || "",
+      FatherName: personal.father || "",
+      MotherName: personal.mother || "",
+      Gender: personal.gender || "",
+      DOB: personal.dob || "",
+      Mobile: personal.mobile || "",
+      Email: personal.email || "",
+      Address: personal.address || "",
+
+      CollegeName: college,
+      CollegeAddress: collegeAddress,
+      Branch: branch,
+      RollNo: roll,
+      AdmissionYear: admissionYear,
+      CurrentYear: currentYear,
+      Password: password
+    };
+
+    
+    console.log("Submitting finalData:", finalData);
+
+    
+    fetch("https://sheetdb.io/api/v1/ozf48ofv2i414", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ data: [finalData] })
+    })
+    .then(resp => {
+      if (!resp.ok) throw new Error(`Network response ${resp.status}`);
+      return resp.json();
+    })
+    .then(json => {
+      console.log("SheetDB response:", json);
+      popup.style.display = "block";
+      setTimeout(() => {
+        popup.style.display = "none";
+        localStorage.removeItem("studentData");
+        
+        window.location.href = "personal.html";
+      }, 1800);
+    })
+    .catch(err => {
+      console.error("Submit failed:", err);
+      alert("Submission failed. Check console for details.");
+    });
+  });
+});
+
+
+
+
+  </script>
+</body>
+</html>
+
